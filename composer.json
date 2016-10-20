@@ -1,0 +1,29 @@
+{
+  "name": "oxerptest",
+  "license": "MIT",
+  "type": "project",
+  "description": "console application to test your oxid erp",
+  "autoload": {
+    "psr-4": {
+      "OxErpTest\\": "src/"
+    },
+    "exclude-from-classmap": [
+      "/tests/"
+    ]
+  },
+  "require": {
+    "php": ">=5.6",
+    "symfony/console": "@stable",
+    "symfony/config": "@stable",
+    "symfony/dependency-injection": "@stable"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "@stable"
+  },
+  "authors": [
+    {
+      "name": "Patrick Blom",
+      "email": "info@bl0m.de"
+    }
+  ]
+}

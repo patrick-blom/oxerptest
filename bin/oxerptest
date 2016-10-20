@@ -1,0 +1,10 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+$container = \OxErpTest\Container::Instance();
+
+$application = $container->get('oxerptest.application');
+$application->setName('OxErpTest');
+$application->run();
