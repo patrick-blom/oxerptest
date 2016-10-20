@@ -4,14 +4,14 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services
         http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <imports>
-        <import resource="parameter.xml"/>
-    </imports>
-
     <services>
         <service id="ox_erp_test.application" class="Symfony\Component\Console\Application"/>
 
         <service id="ox_erp_test.commands.test_all_calls_command" class="OxErpTest\Commands\TestAllCallsCommand">
+            <tag name="ox_erp_test.command"/>
+        </service>
+
+        <service id="ox_erp_test.commands.test_single_call_command" class="OxErpTest\Commands\TestSingleCallCommand">
             <tag name="ox_erp_test.command"/>
         </service>
     </services>

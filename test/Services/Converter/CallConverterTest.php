@@ -19,7 +19,7 @@ class CallConverterTest extends PHPUnit_Framework_TestCase
                                 </soapenv:Body>
                              </soapenv:Envelope>';
 
-        $converter = new \OxErpTest\Services\Converter\CallConverter();
+        $converter = new \OxErpTest\Services\Converter\CallConverter([]);
 
         /** @var \OxErpTest\Structs\OxidXmlCall $call */
         $call = $converter->convert($xmlString);
@@ -27,6 +27,36 @@ class CallConverterTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf('OxErpTest\Structs\OxidXmlCall', $call);
         $this->assertEquals('OXERPLogin', $call->methodName);
         $this->assertEquals($xmlString, $call->xml);
+
+    }
+
+    public function testConverterReplacement()
+    {
+        $xmlString = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:oxer="OXERPService">
+                            <soapenv:Header/>
+                            <soapenv:Body>
+                                <oxer:OXERPGetOrder>
+                                    <!--Optional:-->
+                                    <oxer:sSessionID>##SESSIONID##</oxer:sSessionID>
+                                    <!--Optional:-->
+                                    <oxer:sOrderID>fancyOrderId</oxer:sOrderID>
+                                </oxer:OXERPGetOrder>
+                            </soapenv:Body>
+                        </soapenv:Envelope>
+                        ';
+
+        $converter = new \OxErpTest\Services\Converter\CallConverter(
+            [
+                '##SESSIONID##' => 'foo'
+            ]
+        );
+
+        /** @var \OxErpTest\Structs\OxidXmlCall $call */
+        $call = $converter->convert($xmlString);
+
+        $this->assertInstanceOf('OxErpTest\Structs\OxidXmlCall', $call);
+        $this->assertEquals('OXERPGetOrder', $call->methodName);
+        $this->assertEquals(str_replace('##SESSIONID##', 'foo', $xmlString), $call->xml);
 
     }
 }

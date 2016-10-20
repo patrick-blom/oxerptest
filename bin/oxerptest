@@ -6,5 +6,5 @@ require __DIR__ . '/../vendor/autoload.php';
 $container = \OxErpTest\Container::Instance();
 
 $application = $container->get('ox_erp_test.application');
-$application->setName('OxErpTest');
+$application->setName('OxERPTest');
 $application->run();

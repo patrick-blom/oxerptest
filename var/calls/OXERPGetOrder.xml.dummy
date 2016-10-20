@@ -1,0 +1,11 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:oxer="OXERPService">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <oxer:OXERPGetOrder>
+            <!--Optional:-->
+            <oxer:sSessionID>##SESSIONID##</oxer:sSessionID>
+            <!--Optional:-->
+            <oxer:sOrderID>fancyOrderId</oxer:sOrderID>
+        </oxer:OXERPGetOrder>
+    </soapenv:Body>
+</soapenv:Envelope>
