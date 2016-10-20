@@ -10,6 +10,10 @@ e.g. OXERPGetOrder.xml .
 3. Create the equivalent response xml files for your tests in `var/responses`. Append the term Response to the call name
  e.g. OXERPGetOrderResponse.xml.
  
+####Important !!
+Use the ##SESSIONID## placeholder in the calls to ensure the replacement with the dynamic session id. Checkout the 
+.dummy files for an example. 
+
 ##Usage
 ###The test all command
 Test all your calls using the command
