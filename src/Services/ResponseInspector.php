@@ -12,14 +12,26 @@ class ResponseInspector
     private $responses;
 
     /**
-     * @param $response
+     * @param $callResponse
      * @param $methodName
      * @return bool
+     * @throws \Exception
      */
-    public function inspect($response, $methodName)
+    public function inspect($callResponse, $methodName)
     {
+        $responseName = $methodName . 'Response';
+        $responseFiles = $this->getResponseCollection();
 
+        if (!array_key_exists($responseName, $responseFiles)) {
+            throw new \Exception(
+                'could not find response file for [' . $methodName . ']. missing file ' .
+                $responseName . 'in var/responses'
+            );
+        }
 
+        // Todo compore the soap calls
+
+        return true;
     }
 
     /**
@@ -28,11 +40,11 @@ class ResponseInspector
      */
     private function getResponseCollection()
     {
-        if($this->responses === null){
+        if ($this->responses === null) {
             $responseCollector = new XmlResponseCollector();
             $responseCollection = $responseCollector->collect();
 
-            if(empty($responseCollection)){
+            if (empty($responseCollection)) {
                 throw new \Exception('missing responses! check filen ames or count');
             }
 
@@ -40,5 +52,4 @@ class ResponseInspector
         }
         return $this->responses;
     }
-
 }

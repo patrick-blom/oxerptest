@@ -32,7 +32,7 @@ class XmlResponseCollector implements CollectorInterface
                     $file->getContents()
                 );
 
-                array_push($this->collection, $responseString);
+                $this->collection[substr($file->getFilename(), 0, -4)] = $responseString;
             }
         }
 
