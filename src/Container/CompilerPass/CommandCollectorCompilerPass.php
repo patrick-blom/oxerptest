@@ -16,7 +16,7 @@ class CommandCollectorCompilerPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        foreach ($container->findTaggedServiceIds('oxerptest.command') as $id => $attr) {
+        foreach ($container->findTaggedServiceIds('ox_erp_test.command') as $id => $attr) {
 
             $definition = $container->getDefinition($id);
             if (!$definition->isPublic()) {
@@ -25,7 +25,7 @@ class CommandCollectorCompilerPass implements CompilerPassInterface
 
             $command = $container->get($id);
             if ($command instanceof Command) {
-                $application = $container->get('oxerptest.application');
+                $application = $container->get('ox_erp_test.application');
                 $application->add($command);
             }
         }

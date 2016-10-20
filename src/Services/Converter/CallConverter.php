@@ -2,9 +2,10 @@
 
 namespace OxErpTest\Services\Converter;
 
+use OxErpTest\Services\ConverterInterface;
 use OxErpTest\Structs\OxidXmlCall;
 
-class CallConverter
+class CallConverter implements ConverterInterface
 {
     /**
      * @var array
@@ -21,28 +22,30 @@ class CallConverter
     }
 
     /**
-     * @param $callString
+     * @param $string
      * @return OxidXmlCall
      */
-    public function convert($callString)
+    public function convert($string)
     {
         $methodName =
             substr(
                 strstr(
-                    strstr($callString, '<oxer:'),
+                    strstr($string, '<oxer:'),
                     '>',
                     true
                 ), 6
             );
 
-        foreach ($this->replacements as $key => $replacement) {
-            str_replace($key, $replacement, $callString);
+        if($this->replacements){
+            foreach ($this->replacements as $key => $replacement) {
+                $string = str_replace($key, $replacement, $string);
+            }
         }
 
         return new OxidXmlCall(
             [
                 'methodName' => $methodName,
-                'xml' => $callString
+                'xml' => $string
             ]
         );
     }

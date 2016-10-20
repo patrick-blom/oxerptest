@@ -9,11 +9,10 @@
     </imports>
 
     <services>
-        <service id="oxerptest.application" class="Symfony\Component\Console\Application"/>
+        <service id="ox_erp_test.application" class="Symfony\Component\Console\Application"/>
 
-        <service id="oxerptest.commands.test_all_calls_command" class="OxErpTest\Commands\TestAllCallsCommand">
-            <tag name="oxerptest.command"/>
+        <service id="ox_erp_test.commands.test_all_calls_command" class="OxErpTest\Commands\TestAllCallsCommand">
+            <tag name="ox_erp_test.command"/>
         </service>
-
     </services>
 </container>

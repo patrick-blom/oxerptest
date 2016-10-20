@@ -1,3 +1,5 @@
 .idea/
 vendor/
+var/calls/*.xml
+var/responses/*.xml
 composer.lock

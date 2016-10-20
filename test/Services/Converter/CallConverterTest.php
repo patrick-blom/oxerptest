@@ -19,7 +19,7 @@ class CallConverterTest extends PHPUnit_Framework_TestCase
                                 </soapenv:Body>
                              </soapenv:Envelope>';
 
-        $converter = new \OxErpTest\Services\Converter\CallConverter([]);
+        $converter = new \OxErpTest\Services\Converter\CallConverter();
 
         /** @var \OxErpTest\Structs\OxidXmlCall $call */
         $call = $converter->convert($xmlString);

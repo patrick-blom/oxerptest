@@ -5,8 +5,13 @@ namespace OxErpTest\Commands;
 use OxErpTest\Container;
 use OxErpTest\Services\AuthorizationManager;
 use OxErpTest\Services\CallHandlerFactory;
+use OxErpTest\Services\Collectors\XmlCallCollector;
+use OxErpTest\Services\Collectors\XmlResponseCollector;
+use OxErpTest\Services\ResponseInspector;
 use OxErpTest\Structs\ErpTestConfig;
+use OxErpTest\Structs\OxidXmlCall;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -70,14 +75,38 @@ class TestAllCallsCommand extends Command
             ]
         );
 
-        $authorizationManger = new AuthorizationManager(
-            new CallHandlerFactory($config),
-            $config
-        );
-
+        $io->comment('authorizing against the erp');
+        $callHandlerFactory = new CallHandlerFactory($config);
+        $authorizationManger = new AuthorizationManager($callHandlerFactory, $config);
         $sessionId = $authorizationManger->authorize();
 
+        $io->comment('collection calls');
+        $callCollector = new XmlCallCollector($sessionId);
+        $callCollection = $callCollector->collect();
 
+        if (empty($callCollection)) {
+            $io->warning('could not find calls to test');
+            return 1;
+        }
+
+        $io->comment('got ' . count($callCollection) . ' calls start testing...');
+        $responseInspector = new ResponseInspector();
+        $customCallHandler = $callHandlerFactory->getCustomCallHandler();
+
+        /** @var OxidXmlCall $oxidXmlCall */
+        foreach ($callCollection as $oxidXmlCall) {
+
+            try {
+                $response = $customCallHandler->call($oxidXmlCall);
+                if ($responseInspector->inspect($response, $oxidXmlCall->methodName)) {
+                    $io->success($oxidXmlCall->methodName . ': test passed');
+                } else {
+                    $io->warning($oxidXmlCall->methodName . ': test faild');
+                }
+            } catch (\Exception $exc) {
+                $io->warning($oxidXmlCall->methodName . ": test faild with exception " . $exc->getMessage());
+            }
+        }
 
         return 0;
     }

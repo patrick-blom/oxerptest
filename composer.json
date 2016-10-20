@@ -15,7 +15,8 @@
     "php": ">=5.6",
     "symfony/console": "@stable",
     "symfony/config": "@stable",
-    "symfony/dependency-injection": "@stable"
+    "symfony/dependency-injection": "@stable",
+    "symfony/finder": "@stable"
   },
   "require-dev": {
     "phpunit/phpunit": "@stable"
