@@ -22,7 +22,7 @@ php bin/oxerptest test:all https://www.my-oxidshop.com username password
 
  // authorizing against the erp                                                                                         
 
- // collection calls                                                                                                    
+ // collecting calls                                                                                                    
 
  // got 2 calls start testing...                                                                                        
 

@@ -77,7 +77,7 @@ class TestAllCallsCommand extends Command
         $authorizationManger = new AuthorizationManager($callHandlerFactory, $config);
         $sessionId = $authorizationManger->authorize();
 
-        $io->comment('collection calls');
+        $io->comment('collecting calls');
         $callCollector = new XmlCallCollector($sessionId);
         $callCollection = $callCollector->collect();
 
