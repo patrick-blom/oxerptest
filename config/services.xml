@@ -10,5 +10,10 @@
 
     <services>
         <service id="oxerptest.application" class="Symfony\Component\Console\Application"/>
+
+        <service id="oxerptest.commands.test_all_calls_command" class="OxErpTest\Commands\TestAllCallsCommand">
+            <tag name="oxerptest.command"/>
+        </service>
+
     </services>
 </container>
