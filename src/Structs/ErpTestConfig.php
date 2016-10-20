@@ -42,7 +42,7 @@ class ErpTestConfig extends Base
      */
     public function getWSDLUrl()
     {
-        return $this->shopUrl . self::ERP_MODULE_PATH . '?wsdl&' . $this->erpVersion;
+        return $this->shopUrl . self::ERP_MODULE_PATH . '?wsdl&version=' . $this->erpVersion;
     }
 
     /**
@@ -50,7 +50,7 @@ class ErpTestConfig extends Base
      */
     public function getSoapLoacation()
     {
-        return $this->shopUrl . self::ERP_MODULE_PATH;
+        return $this->shopUrl . self::ERP_MODULE_PATH . '?version=' . $this->erpVersion;;
     }
 
 }

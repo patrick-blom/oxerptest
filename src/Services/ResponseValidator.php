@@ -4,7 +4,7 @@ namespace OxErpTest\Services;
 
 use OxErpTest\Services\Collectors\XmlResponseCollector;
 
-class ResponseInspector
+class ResponseValidator
 {
     /**
      * @var array
@@ -14,10 +14,10 @@ class ResponseInspector
     /**
      * @param $callResponse
      * @param $methodName
-     * @return bool
+     * @return boolean
      * @throws \Exception
      */
-    public function inspect($callResponse, $methodName)
+    public function validate($callResponse, $methodName)
     {
         $responseName = $methodName . 'Response';
         $responseFiles = $this->getResponseCollection();
@@ -29,9 +29,11 @@ class ResponseInspector
             );
         }
 
-        // Todo compore the soap calls
+        if (sha1($callResponse) == sha1($responseFiles[$responseName])) {
+            return true;
+        }
 
-        return true;
+        return false;
     }
 
     /**
