@@ -14,5 +14,9 @@
         <service id="ox_erp_test.commands.test_single_call_command" class="OxErpTest\Commands\TestSingleCallCommand">
             <tag name="ox_erp_test.command"/>
         </service>
+
+        <service id="ox_erp_test.commands.list_tests_command" class="OxErpTest\Commands\ListTestsCommand">
+            <tag name="ox_erp_test.command"/>
+        </service>
     </services>
 </container>
