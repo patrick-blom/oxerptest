@@ -1,0 +1,22 @@
+{
+  "chmod": "0755",
+  "alias": "oxerptest.phar",
+  "directories": ["src", "config","vendor"],
+  "files": [
+    "vendor/autoload.php"
+  ],
+  "finder": [
+    {
+      "name": "*.php",
+      "exclude": ["tests","Tests"],
+      "in": [
+        "vendor",
+        "src"
+      ]
+    }
+  ],
+  "intercept": true,
+  "main": "bin/oxerptest",
+  "output": "oxerptest.phar",
+  "stub": true
+}

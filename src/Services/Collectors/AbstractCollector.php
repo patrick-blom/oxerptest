@@ -6,7 +6,7 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 
 class AbstractCollector
 {
-    const VAR_PATH = __DIR__ . '/../../../var';
+    const VAR_PATH = '/../../../../var';
     const CALL_PATH = self::VAR_PATH . '/calls';
     const RESPONSES_PATH = self::VAR_PATH . '/responses';
 
