@@ -47,7 +47,7 @@ class ResponseValidator
             $responseCollection = $responseCollector->collect();
 
             if (empty($responseCollection)) {
-                throw new \Exception('missing responses! check filen ames or count');
+                throw new \Exception('missing responses! check file names or count');
             }
 
             $this->responses = $responseCollection;
