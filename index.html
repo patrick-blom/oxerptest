@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>OxERPTest by patrick-blom</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">OxERPTest</h1>
+      <h2 class="project-tagline">Test your OXID ERP in a automated way.</h2>
+      <a href="https://github.com/patrick-blom/oxerptest" class="btn">View on GitHub</a>
+      <a href="https://github.com/patrick-blom/oxerptest/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/patrick-blom/oxerptest/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h2>
+<a id="wellcome-to-oxerptest" class="anchor" href="#wellcome-to-oxerptest" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Wellcome to OxERPTest</h2>
+
+<p>OxERPTest is a CLI Tool based on Symfony2 which calls the OXID ERP and compares the result.</p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>There are two ways to install OxERPTest. </p>
+
+<h3>
+<a id="using-the-oxerptestphar" class="anchor" href="#using-the-oxerptestphar" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using the oxerptest.phar</h3>
+
+<ol>
+<li>Download the latest <a href="https://github.com/patrick-blom/oxerptest/raw/v1.0.0/oxerptest.phar">oxerptest.phar</a> </li>
+<li>Create the <code>var/calls/</code> and <code>var/responses</code> directories add the same level you put the .phar file. </li>
+<li>Create the calls you want to test in <code>var/calls/</code> as xml files. Use the name given by the OXID ERP naming convention e.g. OXERPGetOrder.xml . </li>
+<li>Create the equivalent response xml files for your tests in <code>var/responses</code>. Append the term Response to the call name e.g. OXERPGetOrderResponse.xml.</li>
+</ol>
+
+<h3>
+<a id="clone-the-repository" class="anchor" href="#clone-the-repository" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Clone the repository</h3>
+
+<ol>
+<li>Clone the <a href="https://github.com/patrick-blom/oxerptest/tree/v1.0.0">repository</a>
+</li>
+<li>Install the dependencies using <a href="https://getcomposer.org/">composer</a>
+</li>
+<li>Create the calls you want to test in <code>var/calls/</code> as xml files. Use the name given by the OXID ERP naming convention e.g. OXERPGetOrder.xml . </li>
+<li>Create the equivalent response xml files for your tests in <code>var/responses</code>. Append the term Response to the call name e.g. OXERPGetOrderResponse.xml.</li>
+</ol>
+
+<h3>
+<a id="important-for-both-installation-types-" class="anchor" href="#important-for-both-installation-types-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Important for both installation types !!</h3>
+
+<p>Use the ##SESSIONID## placeholder in the calls to ensure the replacement with the dynamic session id.</p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a id="the-test-all-command" class="anchor" href="#the-test-all-command" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The test all command</h3>
+
+<p>Test all your calls using the command</p>
+
+<pre><code>php bin/oxerptest test:all https://www.my-oxidshop.com username password
+
+ // authorizing against the erp                                                                                         
+
+ // collecting calls                                                                                                    
+
+ // got 2 calls start testing...                                                                                        
+
+
+ [OK] OXERPGetArticle: test passed                                                                                      
+
+ [OK] OXERPGetOrder: test passed                                                                                        
+</code></pre>
+
+<p>You can use the optional commands to modify the default behavior:</p>
+
+<pre><code>Options:
+      --shopId=SHOPID            the shopId you want to test [default: "1"]
+      --languageId=LANGUAGEID    the languageId of the shop you want to test [default: "0"]
+      --wsdlversion=WSDLVERSION  the version number of the wsdl [default: "2.12"]
+</code></pre>
+
+<h3>
+<a id="the-test-one-command" class="anchor" href="#the-test-one-command" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The test one command</h3>
+
+<p>Test one specific call</p>
+
+<pre><code>php bin/oxerptest test:one https://www.my-oxidshop.com username password OXREPGetOrder.xml
+
+ // authorizing against the erp                                                                                         
+
+ [OK] OXERPGetOrder: test passed                                                                                        
+</code></pre>
+
+<p>You can use the optional commands to modify the default behavior:</p>
+
+<pre><code>Options:
+      --shopId=SHOPID            the shopId you want to test [default: "1"]
+      --languageId=LANGUAGEID    the languageId of the shop you want to test [default: "0"]
+      --wsdlversion=WSDLVERSION  the version number of the wsdl [default: "2.12"]
+</code></pre>
+
+<h3>
+<a id="the-list-command" class="anchor" href="#the-list-command" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The list command</h3>
+
+<p>To list all your available test</p>
+
+<pre><code>php bin/oxerptest list:tests 
+
+ // collecting calls                                                                                                    
+
+ ! [NOTE] found 1 call(s)...                                                                                            
+
+ // collecting responses                                                                                                
+
+ ! [NOTE] found 1 response(s)...                                                                                        
+
+ // creating summary                                                                                                    
+
+ -------- ------------------ ------------------------- 
+  Number   Name of the call   Responsefile available?  
+ -------- ------------------ ------------------------- 
+  1        OXERPGetOrder      yes                      
+ -------- ------------------ ------------------------- 
+
+ -------- ----------------------- --------------------- 
+  Number   Name of the Response    Callfile available?  
+ -------- ----------------------- --------------------- 
+  1        OXERPGetOrderResponse   yes                  
+ -------- ----------------------- --------------------- 
+
+</code></pre>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/patrick-blom/oxerptest">OxERPTest</a> is maintained by <a href="https://github.com/patrick-blom">patrick-blom</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
