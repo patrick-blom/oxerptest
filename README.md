@@ -1,4 +1,6 @@
 ##OxERPTest
+[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
+
 Test your OXID ERP in a automated way.
 
 OxERPTest is a CLI Tool based on Symfony2 which calls the OXID ERP and compares the result.
@@ -40,7 +42,7 @@ Options:
       --wsdlversion=WSDLVERSION  the version number of the wsdl [default: "2.12"]
 ```
 
-###The test on command
+###The test one command
 Test one specific call
 ```
 php bin/oxerptest test:one https://www.my-oxidshop.com username password OXREPGetOrder.xml
@@ -56,6 +58,35 @@ Options:
       --shopId=SHOPID            the shopId you want to test [default: "1"]
       --languageId=LANGUAGEID    the languageId of the shop you want to test [default: "0"]
       --wsdlversion=WSDLVERSION  the version number of the wsdl [default: "2.12"]
+```
+
+###The list command
+To list all your available test
+```
+php bin/oxerptest list:tests 
+
+ // collecting calls                                                                                                    
+
+ ! [NOTE] found 1 call(s)...                                                                                            
+
+ // collecting responses                                                                                                
+
+ ! [NOTE] found 1 response(s)...                                                                                        
+
+ // creating summary                                                                                                    
+
+ -------- ------------------ ------------------------- 
+  Number   Name of the call   Responsefile available?  
+ -------- ------------------ ------------------------- 
+  1        OXERPGetOrder      yes                      
+ -------- ------------------ ------------------------- 
+
+ -------- ----------------------- --------------------- 
+  Number   Name of the Response    Callfile available?  
+ -------- ----------------------- --------------------- 
+  1        OXERPGetOrderResponse   yes                  
+ -------- ----------------------- --------------------- 
+
 ```
 
 ##Tests
