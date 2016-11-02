@@ -17,10 +17,10 @@ class XmlResponseCollector extends AbstractCollector implements CollectorInterfa
      */
     public function collect()
     {
-        if ($this->ensurePath() && empty($this->collection)) {
+        if ($this->checkPaths() && empty($this->collection)) {
             $finder = new Finder();
 
-            foreach ($finder->files()->in(self::RESPONSES_PATH)->name('*.xml') as $file) {
+            foreach ($finder->files()->in($this->responsePath)->name('*.xml') as $file) {
                 $responseString = $file->getContents();
 
                 $this->collection[substr($file->getFilename(), 0, -4)] = $responseString;

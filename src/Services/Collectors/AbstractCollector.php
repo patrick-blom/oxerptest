@@ -2,29 +2,51 @@
 
 namespace OxErpTest\Services\Collectors;
 
-use Symfony\Component\Config\Definition\Exception\Exception;
-
-class AbstractCollector
+abstract class AbstractCollector
 {
-    const VAR_PATH = '/../../../../var';
-    const CALL_PATH = self::VAR_PATH . '/calls';
-    const RESPONSES_PATH = self::VAR_PATH . '/responses';
+    /**
+     * @var string
+     */
+    protected $callPath;
+
+    /**
+     * @var string
+     */
+    protected $responsePath;
 
     /**
      * @return bool
+     * @throws \Exception
      */
-    protected function ensurePath()
+    protected function checkPaths()
     {
-        if (!is_dir(self::VAR_PATH)) {
-            throw new Exception('could not find ./var directory plz create it');
+        $baseDir = '';
+        if (!\Phar::running()) {
+            $baseDir = __DIR__ . '/../../../';
+        } else {
+            $outerBaseDir = dirname(\Phar::running(false));
+            try {
+                if (!is_dir($outerBaseDir . '/var/calls/')) {
+                    \Phar::mount('var/calls/', $outerBaseDir . '/var/calls/');
+                }
+                if (!is_dir($outerBaseDir . '/var/responses/')) {
+                    \Phar::mount('var/responses/', $outerBaseDir . '/var/responses/');
+                }
+            } catch (\PharException $e) {
+                throw new \Exception(
+                    'It seems that you are using a phar. Please create ./var/calls and ./var/responses directory'
+                );
+            }
         }
 
-        if (!is_dir(self::CALL_PATH)) {
-            throw new Exception('could not find ./var/calls directory plz create it, and add some calls');
-        }
+        $this->callPath = $baseDir . 'var/calls/';
+        $this->responsePath = $baseDir . 'var/responses/';
 
-        if (!is_dir(self::RESPONSES_PATH)) {
-            throw new Exception('could not find ./var/responses directory plz create it, and add some responses');
+        // check not necessary in phar
+        if (!\Phar::running() && (!is_dir($this->callPath) || !is_dir($this->responsePath))) {
+            throw new \Exception(
+                'Please create ./var/calls and ./var/responses directory'
+            );
         }
 
         return true;

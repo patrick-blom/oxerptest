@@ -37,11 +37,11 @@ class XmlCallCollector extends AbstractCollector implements CollectorInterface
      */
     public function collect()
     {
-        if ($this->ensurePath() && empty($this->collection)) {
+        if ($this->checkPaths() && empty($this->collection)) {
             $finder = new Finder();
 
             /** @var SplFileInfo $file */
-            foreach ($finder->files()->in(self::CALL_PATH)->name('*.xml') as $file) {
+            foreach ($finder->files()->in($this->callPath)->name('*.xml') as $file) {
                 $oxidXmlCall = $this->getConverter()->convert(
                     $file->getContents()
                 );
