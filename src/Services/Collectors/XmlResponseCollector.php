@@ -5,7 +5,7 @@ namespace OxErpTest\Services\Collectors;
 use OxErpTest\Services\CollectorInterface;
 use Symfony\Component\Finder\Finder;
 
-class XmlResponseCollector implements CollectorInterface
+class XmlResponseCollector extends AbstractCollector implements CollectorInterface
 {
     /**
      * @var array
@@ -17,12 +17,10 @@ class XmlResponseCollector implements CollectorInterface
      */
     public function collect()
     {
-        if (empty($this->collection)) {
-
+        if ($this->ensurePath() && empty($this->collection)) {
             $finder = new Finder();
-            $path = __DIR__ . '/../../../var/responses';
 
-            foreach ($finder->files()->in($path)->name('*.xml') as $file) {
+            foreach ($finder->files()->in(self::RESPONSES_PATH)->name('*.xml') as $file) {
                 $responseString = $file->getContents();
 
                 $this->collection[substr($file->getFilename(), 0, -4)] = $responseString;

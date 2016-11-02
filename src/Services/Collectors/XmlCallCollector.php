@@ -7,7 +7,7 @@ use OxErpTest\Services\Converter\CallConverter;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
-class XmlCallCollector implements CollectorInterface
+class XmlCallCollector extends AbstractCollector implements CollectorInterface
 {
 
     /**
@@ -37,13 +37,11 @@ class XmlCallCollector implements CollectorInterface
      */
     public function collect()
     {
-        if (empty($this->collection)) {
-
+        if ($this->ensurePath() && empty($this->collection)) {
             $finder = new Finder();
-            $path = __DIR__ . '/../../../var/calls';
 
             /** @var SplFileInfo $file */
-            foreach ($finder->files()->in($path)->name('*.xml') as $file) {
+            foreach ($finder->files()->in(self::CALL_PATH)->name('*.xml') as $file) {
                 $oxidXmlCall = $this->getConverter()->convert(
                     $file->getContents()
                 );
