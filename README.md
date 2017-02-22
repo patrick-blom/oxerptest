@@ -1,4 +1,5 @@
 ##OxERPTest
+[![Build Status](https://travis-ci.org/patrick-blom/oxerptest.svg?branch=master)](https://travis-ci.org/patrick-blom/oxerptest)
 [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
 Test your OXID ERP in a automated way.
