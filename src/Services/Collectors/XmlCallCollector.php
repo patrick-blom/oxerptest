@@ -7,7 +7,7 @@ use OxErpTest\Services\Converter\CallConverter;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
-class XmlCallCollector extends AbstractCollector implements CollectorInterface
+final class XmlCallCollector extends AbstractCollector implements CollectorInterface
 {
 
     /**

@@ -5,7 +5,7 @@ namespace OxErpTest\Services\CallHandlers;
 use OxErpTest\Structs\ErpTestConfig;
 use OxErpTest\Structs\OxidXmlCall;
 
-class CustomCallHandler
+final class CustomCallHandler
 {
 
     /**

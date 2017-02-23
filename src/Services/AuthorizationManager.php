@@ -5,7 +5,7 @@ namespace OxErpTest\Services;
 
 use OxErpTest\Structs\ErpTestConfig;
 
-class AuthorizationManager
+final class AuthorizationManager
 {
     /**
      * @var CallHandlerFactory

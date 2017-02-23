@@ -2,7 +2,7 @@
 
 namespace OxErpTest\Structs;
 
-class ErpTestConfig extends Base
+final class ErpTestConfig extends Base
 {
 
     const ERP_MODULE_PATH = '/modules/erp/oxerpservice.php';

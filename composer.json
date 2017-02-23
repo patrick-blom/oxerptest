@@ -5,7 +5,8 @@
   "description": "console application to test your oxid erp",
   "autoload": {
     "psr-4": {
-      "OxErpTest\\": "src/"
+      "OxErpTest\\": "src/",
+      "OxErpTestTest\\": "test/"
     },
     "exclude-from-classmap": [
       "/tests/"

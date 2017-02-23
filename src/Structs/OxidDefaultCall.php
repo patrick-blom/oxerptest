@@ -2,7 +2,7 @@
 
 namespace OxErpTest\Structs;
 
-class OxidDefaultCall extends Base
+final class OxidDefaultCall extends Base
 {
 
     /**

@@ -2,7 +2,7 @@
 
 namespace OxErpTest\Services\CallHandlers;
 
-class DefaultCallHandler
+final class DefaultCallHandler
 {
     /**
      * @var \SoapClient

@@ -4,7 +4,7 @@ namespace OxErpTest\Services;
 
 use OxErpTest\Services\Collectors\XmlResponseCollector;
 
-class ResponseValidator
+final class ResponseValidator
 {
     /**
      * @var array

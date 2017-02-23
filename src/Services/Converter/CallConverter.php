@@ -5,7 +5,7 @@ namespace OxErpTest\Services\Converter;
 use OxErpTest\Services\ConverterInterface;
 use OxErpTest\Structs\OxidXmlCall;
 
-class CallConverter implements ConverterInterface
+final class CallConverter implements ConverterInterface
 {
     /**
      * @var array

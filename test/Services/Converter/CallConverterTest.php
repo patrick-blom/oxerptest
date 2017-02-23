@@ -1,7 +1,8 @@
 <?php
 
+namespace OxErpTestTest\Service\Converter;
 
-class CallConverterTest extends PHPUnit_Framework_TestCase
+class CallConverterTest extends \PHPUnit_Framework_TestCase
 {
     public function testConvertMethodName()
     {

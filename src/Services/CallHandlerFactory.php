@@ -6,7 +6,7 @@ use OxErpTest\Services\CallHandlers\CustomCallHandler;
 use OxErpTest\Services\CallHandlers\DefaultCallHandler;
 use OxErpTest\Structs\ErpTestConfig;
 
-class CallHandlerFactory
+final class CallHandlerFactory
 {
     /**
      * @var ErpTestConfig

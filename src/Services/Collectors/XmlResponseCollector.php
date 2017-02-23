@@ -5,7 +5,7 @@ namespace OxErpTest\Services\Collectors;
 use OxErpTest\Services\CollectorInterface;
 use Symfony\Component\Finder\Finder;
 
-class XmlResponseCollector extends AbstractCollector implements CollectorInterface
+final class XmlResponseCollector extends AbstractCollector implements CollectorInterface
 {
     /**
      * @var array
